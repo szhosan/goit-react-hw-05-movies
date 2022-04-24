@@ -1,108 +1,90 @@
-## Create-React-App-Lambda
+**Read in other languages: [Русский](README.md), [Polska](README.pl.md).**
 
-This project is a reference demo showing you how to use [Create React App v3](https://github.com/facebookincubator/create-react-app) and [netlify-lambda v1](https://github.com/netlify/netlify-lambda) together in a [Netlify Dev](https://www.netlify.com/docs/cli/?utm_source=github&utm_medium=swyx-CRAL&utm_campaign=devex#netlify-dev-beta) workflow. You can clone this and immediately be productive with a React app with serverless Netlify Functions in the same repo. Alternatively you can deploy straight to Netlify with this one-click Deploy:
+# React homework template
 
+Этот проект был создан при помощи
+[Create React App](https://github.com/facebook/create-react-app). Для знакомства
+и настройки дополнительных возможностей
+[обратись к документации](https://facebook.github.io/create-react-app/docs/getting-started).
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg?utm_source=github&utm_medium=swyx-CRAL&utm_campaign=devex)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify/create-react-app-lambda&utm_source=github&utm_medium=swyx-CRAL&utm_campaign=devex)
+## Подготовка нового проекта
 
-> ⚠️NOTE: You may not need this project at all. [Netlify Dev](https://github.com/netlify/netlify-dev-plugin) works with `create-react-app` out of the box! Only use `netlify-lambda` if you need a build step for your functions, eg if you want to use Babel or TypeScript ([see its README for details](https://github.com/netlify/netlify-lambda/blob/master/README.md#netlify-lambda)).
+1. Убедись что на компьютере установлена LTS-версия Node.js.
+   [Скачай и установи](https://nodejs.org/en/) её если необходимо.
+2. Склонируй этот репозиторий.
+3. Измени имя папки с `react-homework-template` на имя своего проекта.
+4. Создай новый пустой репозиторий на GitHub.
+5. Открой проект в VSCode, запусти терминал и свяжи проект с GitHub-репозиторием
+   [по инструкции](https://docs.github.com/en/get-started/getting-started-with-git/managing-remote-repositories#changing-a-remote-repositorys-url).
+6. Установи базовые зависимости проекта командой `npm install`.
+7. Запусти режим разработки, выполнив команду `npm start`.
+8. Перейди в браузере по адресу [http://localhost:3000](http://localhost:3000).
+   Эта страница будет автоматически перезагружаться после сохранения изменений в
+   файлах проекта.
 
-## Project Setup
+## Деплой
 
-**Source**: The main addition to base Create-React-App is a new folder: `src/lambda`. This folder is specified and can be changed in the `package.json` script: `"build:lambda": "netlify-lambda build src/lambda"`.
+Продакшн версия проекта будет автоматически проходить линтинг, собираться и
+деплоиться на GitHub Pages, в ветку `gh-pages`, каждый раз когда обновляется
+ветка `main`. Например, после прямого пуша или принятого пул-реквеста. Для этого
+необходимо в файле `package.json` отредактировать поле `homepage`, заменив
+`your_username` и `your_repo_name` на свои, и отправить изменения на GitHub.
 
-**Dist**: Each JavaScript file in there will be built for Netlify Function deployment in `/built-lambda`, specified in [`netlify.toml`](https://www.netlify.com/docs/netlify-toml-reference/?utm_source=github&utm_medium=swyx-CRAL&utm_campaign=devex).
-
-As an example, we've included a small `src/lambda/hello.js` function, which will be deployed to `/.netlify/functions/hello`. We've also included an async lambda example using async/await syntax in `async-dadjoke.js`.
-
-## Video
-
-Learn how to set this up yourself (and why everything is the way it is) from scratch in a video: https://www.youtube.com/watch?v=3ldSM98nCHI
-
-## Babel/webpack compilation
-
-All functions (inside `src/lambda`) are compiled with webpack using Babel, so you can use modern JavaScript, import npm modules, etc., without any extra setup.
-
-## Local Development
-
-```bash
-## prep steps for first time users
-npm i -g netlify-cli # Make sure you have the [Netlify CLI](https://github.com/netlify/cli) installed
-git clone https://github.com/netlify/create-react-app-lambda ## clone this repo
-cd create-react-app-lambda ## change into this repo
-yarn # install all dependencies
-
-## done every time you start up this project
-ntl dev ## nice shortcut for `netlify dev`, starts up create-react-app AND a local Node.js server for your Netlify functions
+```json
+"homepage": "https://your_username.github.io/your_repo_name/"
 ```
 
-This fires up [Netlify Dev](https://www.netlify.com/docs/cli/?utm_source=github&utm_medium=swyx-CRAL&utm_campaign=devex#netlify-dev-beta), which:
+Далее необходимо зайти в настройки GitHub-репозитория (`Settings` > `Pages`) и
+выставить раздачу продакшн версии файлов из папки `/root` ветки `gh-pages`, если
+это небыло сделано автоматически.
 
-- Detects that you are running a `create-react-app` project and runs the npm script that contains `react-scripts start`, which in this project is the `start` script
-- Detects that you use `netlify-lambda` as a [function builder](https://github.com/netlify/netlify-dev-plugin/#function-builders-function-builder-detection-and-relationship-with-netlify-lambda), and runs the npm script that contains `netlify-lambda build`, which in this project is the `build:lambda` script.
+![GitHub Pages settings](./assets/repo-settings.png)
 
-You can view the project locally via Netlify Dev, via `localhost:8888`.
+### Статус деплоя
 
-Each function will be available at the same port as well:
+Статус деплоя крайнего коммита отображается иконкой возле его идентификатора.
 
-- `http://localhost:8888/.netlify/functions/hello` and 
-- `http://localhost:8888/.netlify/functions/async-dadjoke`
+- **Желтый цвет** - выполняется сборка и деплой проекта.
+- **Зеленый цвет** - деплой завершился успешно.
+- **Красный цвет** - во время линтинга, сборки или деплоя произошла ошибка.
 
-## Deployment
+Более детальную информацию о статусе можно посмотреть кликнув по иконке, и в
+выпадающем окне перейти по ссылке `Details`.
 
-During deployment, this project is configured, inside `netlify.toml` to run the build `command`: `yarn build`.
+![Deployment status](./assets/status.png)
 
-`yarn build` corresponds to the npm script `build`, which uses `npm-run-all` (aka `run-p`) to concurrently run `"build:app"` (aka `react-scripts build`) and `build:lambda` (aka `netlify-lambda build src/lambda`).
+### Живая страница
 
-## Typescript
+Через какое-то время, обычно пару минут, живую страницу можно будет посмотреть
+по адресу указанному в отредактированном свойстве `homepage`. Например, вот
+ссылка на живую версию для этого репозитория
+[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
 
-<details>
-  <summary>
-    <b id="typescript">Click for instructions</b>
-  </summary>
+Если открывается пустая страница, убедись что во вкладке `Console` нет ошибок
+связанных с неправильными путями к CSS и JS файлам проекта (**404**). Скорее
+всего у тебя неправильное значение свойства `homepage` в файле `package.json`.
 
-You can use Typescript in both your frontend React code (with `react-scripts` v2.1+) and your serverless functions (with `netlify-lambda` v1.1+). Follow these instructions:
+### Маршрутизация
 
-1. `yarn add -D typescript @types/node @types/react @types/react-dom @babel/preset-typescript @types/aws-lambda`
-2. convert `src/lambda/hello.js` to `src/lambda/hello.ts`
-3. use types in your event handler:
+Если приложение использует библиотеку `react-router-dom` для маршрутизации,
+необходимо дополнительно настроить компонент `<BrowserRouter>`, передав в пропе
+`basename` точное название твоего репозитория. Слеши в начале и конце строки
+обязательны.
 
-```ts
-import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda'
-
-interface HelloResponse {
-  statusCode: number
-  body: string
-}
-
-const handler: Handler = (event: APIGatewayEvent, context: Context, callback: Callback) => {
-  const params = event.queryStringParameters
-  const response: HelloResponse = {
-    statusCode: 200,
-    body: JSON.stringify({
-      msg: `Hello world ${Math.floor(Math.random() * 10)}`,
-      params,
-    }),
-  }
-
-  callback(undefined, response)
-}
-
-export { handler }
+```jsx
+<BrowserRouter basename="/your_repo_name/">
+  <App />
+</BrowserRouter>
 ```
 
-rerun and see it work!
+## Как это работает
 
-You are free to set up your `tsconfig.json` and `tslint` as you see fit.
+![How it works](./assets/how-it-works.png)
 
-</details>
-
-**If you want to try working in Typescript on the client and lambda side**: There are a bunch of small setup details to get right. Check https://github.com/sw-yx/create-react-app-lambda-typescript for a working starter.
-
-## Routing and authentication with Netlify Identity
-
-For a full demo of routing and authentication, check this branch: https://github.com/netlify/create-react-app-lambda/pull/18 This example will not be maintained but may be helpful.
-
-## Service Worker
-
-`create-react-app`'s default service worker (in `src/index.js`) does not work with lambda functions out of the box. It prevents calling the function and returns the app itself instead ([Read more](https://github.com/facebook/create-react-app/issues/2237#issuecomment-302693219)). To solve this you have to eject and enhance the service worker configuration in the webpack config. Whitelist the path of your lambda function and you are good to go.
+1. После каждого пуша в ветку `main` GitHub-репозитория, запускается специальный
+   скрипт (GitHub Action) из файла `.github/workflows/deploy.yml`.
+2. Все файлы репозитория копируются на сервер, где проект инициализируется и
+   проходит линтинг и сборку перед деплоем.
+3. Если все шаги прошли успешно, собранная продакшн версия файлов проекта
+   отправляется в ветку `gh-pages`. В противном случае, в логе выполнения
+   скрипта будет указано в чем проблема.
