@@ -1,10 +1,12 @@
 import { fetchMovieCredits } from '../../services/movie-api';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
 import s from './Cast.module.css';
 
-export default function Cast({ movieId }) {
+export default function Cast() {
   const [movieCredits, setMovieCredits] = useState(null);
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
+  const { movieId } = useParams();
 
   useEffect(() => {
     fetchMovieCredits(movieId).then(setMovieCredits);

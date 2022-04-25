@@ -64,8 +64,8 @@ export default function MovieDetailsView() {
         </div>
         <hr />
         <Routes>
-          <Route path="cast" element={<Cast movieId={movieId} />} />
-          <Route path="reviews" element={<Review movieId={movieId} />} />
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Review />} />
         </Routes>
       </>
     )

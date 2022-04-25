@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default function MoviesLinkList(data) {
   return (
@@ -15,3 +16,12 @@ export default function MoviesLinkList(data) {
     )
   );
 }
+
+MoviesLinkList.propTypes = {
+  data: PropTypes.objectOf({
+    data: PropTypes.arrayOf({
+      id: PropTypes.number.isRequired,
+      original_title: PropTypes.string.isRequired,
+    }),
+  }),
+};
