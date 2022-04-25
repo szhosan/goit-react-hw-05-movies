@@ -1,0 +1,12 @@
+.movie_container {
+  display: flex;
+}
+
+.photo_container {
+  width: 250px;
+  margin-right: 20px;
+}
+
+.poster {
+  width: 100%;
+}

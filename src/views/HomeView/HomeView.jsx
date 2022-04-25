@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import * as movieApi from '../services/movie-api';
+import * as movieApi from '../../services/movie-api';
 import { Link } from 'react-router-dom';
 
 export default function HomeView() {

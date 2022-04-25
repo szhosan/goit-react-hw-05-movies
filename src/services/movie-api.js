@@ -18,3 +18,15 @@ export function fetchMovieDetails(movieId) {
     `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`
   );
 }
+
+export function fetchMovieCredits(movieId) {
+  return fetchWithErrorHandling(
+    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
+  );
+}
+
+export function fetchMovieReviews(movieId) {
+  return fetchWithErrorHandling(
+    `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US`
+  );
+}
