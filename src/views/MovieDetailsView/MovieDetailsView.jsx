@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import {
   useParams,
   useLocation,
-  useHistory,
+  useNavigate,
   Link,
   Routes,
   Route,
@@ -17,6 +17,7 @@ export default function MovieDetailsView() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
+  const navigate = useNavigate();
 
   useEffect(() => {
     movieApi.fetchMovieDetails(movieId).then(setMovie);
@@ -25,6 +26,9 @@ export default function MovieDetailsView() {
   return (
     movie && (
       <>
+        <button className={s.back_btn} onClick={() => navigate(-1)}>
+          &#8592; Go back
+        </button>
         <div className={s.movie_container}>
           <div className={s.photo_container}>
             <img

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as movieApi from '../../services/movie-api';
-import { Link } from 'react-router-dom';
+import MoviesLinkList from 'views/MoviesLinkList/MoviesLinkList';
 
 export default function HomeView() {
   const [movies, setMovies] = useState(null);
@@ -10,19 +10,11 @@ export default function HomeView() {
 
   return (
     <>
-      <h2>Trending today</h2>
       {movies && (
-        <ul>
-          {movies.results.map(({ id, original_title }) => {
-            return (
-              <li key={id}>
-                <Link to={`/movies/${id}`} key={id}>
-                  {original_title}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <>
+          <h2>Trending today</h2>
+          <MoviesLinkList data={movies.results} />
+        </>
       )}
     </>
   );
