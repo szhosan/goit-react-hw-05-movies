@@ -18,10 +18,10 @@ export default function MoviesLinkList(data) {
 }
 
 MoviesLinkList.propTypes = {
-  data: PropTypes.objectOf({
-    data: PropTypes.arrayOf({
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
       id: PropTypes.number.isRequired,
       original_title: PropTypes.string.isRequired,
-    }),
-  }),
+    })
+  ),
 };

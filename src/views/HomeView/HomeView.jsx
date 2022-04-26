@@ -6,6 +6,7 @@ export default function HomeView() {
   const [movies, setMovies] = useState(null);
   useEffect(() => {
     movieApi.fetchTrending().then(setMovies);
+    window.sessionStorage.setItem('prevRoute', '/');
   }, []);
 
   return (

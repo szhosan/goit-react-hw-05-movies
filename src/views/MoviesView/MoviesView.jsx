@@ -23,6 +23,7 @@ export default function MoviesView() {
       return;
     }
     navigate(`${pathname}/?search=${query}`);
+    window.sessionStorage.setItem('prevRoute', `${pathname}/?search=${query}`);
   };
 
   return (

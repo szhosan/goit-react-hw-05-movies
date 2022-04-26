@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import {
   useParams,
   useLocation,
@@ -7,10 +7,14 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import Cast from '../Cast/Cast';
-import Review from '../Reviews/Revies';
 import * as movieApi from '../../services/movie-api.js';
 import s from './MovieDetailsView.module.css';
+const Cast = lazy(() =>
+  import('../Cast/Cast' /* webpackChunkName: "cast-view" */)
+);
+const Review = lazy(() =>
+  import('../Reviews/Reviews' /* webpackChunkName: "review-view" */)
+);
 
 export default function MovieDetailsView() {
   const { pathname } = useLocation();
@@ -26,7 +30,13 @@ export default function MovieDetailsView() {
   return (
     movie && (
       <>
-        <button className={s.back_btn} onClick={() => navigate(-1)}>
+        <button
+          className={s.back_btn}
+          onClick={() => {
+            const prevRoute = window.sessionStorage.getItem('prevRoute');
+            navigate(prevRoute ?? '/');
+          }}
+        >
           &#8592; Go back
         </button>
         <div className={s.movie_container}>
@@ -63,10 +73,12 @@ export default function MovieDetailsView() {
           </ul>
         </div>
         <hr />
-        <Routes>
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Review />} />
-        </Routes>
+        <Suspense fallback={<>loading...</>}>
+          <Routes>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Review />} />
+          </Routes>
+        </Suspense>
       </>
     )
   );
