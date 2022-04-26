@@ -10,18 +10,18 @@ export default function Reviews() {
     fetchMovieReviews(movieId).then(setReviews);
   }, [movieId]);
 
-  return (
-    reviews && (
-      <div>
-        <ul>
-          {reviews.results.map(({ id, author, content }) => (
-            <li key={id}>
-              <h4>Author: {author}</h4>
-              <p>{content}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    )
+  return reviews && reviews.results > 0 ? (
+    <div>
+      <ul>
+        {reviews.results.map(({ id, author, content }) => (
+          <li key={id}>
+            <h4>Author: {author}</h4>
+            <p>{content}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ) : (
+    <div>Reviews not found</div>
   );
 }
