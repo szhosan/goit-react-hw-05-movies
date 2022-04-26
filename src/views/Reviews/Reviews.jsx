@@ -10,7 +10,7 @@ export default function Reviews() {
     fetchMovieReviews(movieId).then(setReviews);
   }, [movieId]);
 
-  return reviews && reviews.results > 0 ? (
+  return reviews && reviews.results.length > 0 ? (
     <div>
       <ul>
         {reviews.results.map(({ id, author, content }) => (
