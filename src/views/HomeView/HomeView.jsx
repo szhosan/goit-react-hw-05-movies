@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as movieApi from '../../services/movie-api';
-import MoviesLinkList from 'views/MoviesLinkList/MoviesLinkList';
+import MoviesLinkList from 'components/MoviesLinkList/MoviesLinkList';
 
 export default function HomeView() {
   const [movies, setMovies] = useState(null);
