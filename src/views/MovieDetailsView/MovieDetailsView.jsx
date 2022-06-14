@@ -58,7 +58,7 @@ export default function MovieDetailsView() {
         </div>
         <hr />
         <div>
-          <p>Additional information</p>
+          <p>Additional information:</p>
           <ul>
             <li>
               <Link to={pathname.split('/').slice(0, 3).join('/') + '/cast'}>
